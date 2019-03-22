@@ -1,0 +1,43 @@
+Routeur R1.
+
+RJ45
+
+Liaison série avec routeur ISP -> fournisseur internet
+
+switch --> 192.168.23.0/24 
+-> 24 bits utilisés pour le réseau
+255.25.255.0  (même chose) -> 0 à 255 adresses
+exemple : 12 hôtes --> + 2 : adresse réseau et adresse broadcast
+12 < 2^4 --> 1100
+192.168.23.0 --> adresse réseau.
+adresse de sortie --> .14
+adresse de broadcast => tous les bits à 1.
+
+60 -> 64 -> 000000
+
+
+GET _search
+{
+  "query": {
+    "match_phrase": {
+      "fields.title": "Star Wars"
+    }
+  }
+}
+
+GET _search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"match": {
+          "fields.title": "Star Wars"
+        }},
+        {"match": {
+          "fields.actors": "Ewan McGregor"
+        }}
+      ],
+	  
+    }
+  }
+}

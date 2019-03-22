@@ -31,7 +31,7 @@ const getMovie = async link => {
 
   return {
     link,
-    'id': $('meta[property="pageId"]').attr('content'),
+    '_id': $('meta[property="pageId"]').attr('content'),
     'metascore': Number($('.metacriticScore span').text()),
     'poster': $('.poster img').attr('src'),
     'rating': Number($('span[itemprop="ratingValue"]').text()),

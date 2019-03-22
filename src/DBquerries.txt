@@ -1,0 +1,52 @@
+
+mongo "mongodb+srv://hemionwebapp-fktzw.azure.mongodb.net/db" --username Quentin
+
+
+
+
+#0 : populate DB : 
+
+mongoimport --db hemion --collection denzel --file
+/path/earthquakes_big.geojson.json
+
+mongoimport --db db --collection denzel --file PATH
+
+
+mongoimport --db db --collection denzel --file C:\Users\quent\Desktop\Webarc\denzel-master\denzel-master\data\movies.json
+
+mongoimport --host HemionWebApp-shard-0/hemionwebapp-shard-00-00-fktzw.azure.mongodb.net:27017,hemionwebapp-shard-00-01-fktzw.azure.mongodb.net:27017,hemionwebapp-shard-00-02-fktzw.azure.mongodb.net:27017 --ssl --username Quentin --password m6x2q7t9!
+ --authenticationDatabase admin --db db --collection denzel --type json --file C:\Users\quent\Desktop\Webarc\denzel-master\denzel-master\data\movies.json
+
+mongoimport --db db --collection denzel ^
+          --authenticationDatabase admin --username quentin --password m6x2q7t9 ^
+          --drop --file C:\Users\quent\Desktop\Webarc\denzel-master\denzel-master\data\movies.json
+
+
+#1 : GET /movies
+
+
+
+db.denzel.aggregate([
+{$match : { "metascore" : {$gte : 70}}},
+{ $sample: { size: 1 } }]);
+
+#2 :  GET /movies/id
+
+db.denzel.find({"id" : myId});
+
+#3 :  GET 
+
+db.denzel.aggregate([
+{$match : {"metascore" : {$gte : _metascore}}},
+{$sort : { "metascore" : -1} },
+{$limit : _limit }]);
+
+db.denzel.aggregate([
+{$match : {"metascore" : {$gte : 70}}},
+{$sort : { "metascore" : -1} },
+{$limit : 2}]);
+
+#4 : POST
+
+d.denzel.update( { id: myId },
+{$set : {"date" : _date, "review" : _review}});
